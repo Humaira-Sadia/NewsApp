@@ -9,7 +9,7 @@ const Cards = ({ category }) => {
   const fetchData = async () => {
     await axios
       .get(
-        `https://newsapi.org/v2/top-headlines?country=in&category=${category}&apiKey=3cf5032a2978426fa09cde2e7c34509a`
+        `https://gnews.io/api/v4/search?q=${category}&lang=en&country=in&max=40&apikey=2c344266cbc913340cf063705a6b0276`
       )
       .then((res) => setData(res.data.articles));
   };
@@ -24,7 +24,7 @@ const Cards = ({ category }) => {
   // Filter out articles that do not have a valid image URL and match the search query
   const filteredArticles = articles.filter(
     (article) =>
-      article.urlToImage &&
+      article.image &&
       (article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.description.toLowerCase().includes(searchQuery.toLowerCase()))
   );
@@ -77,7 +77,7 @@ const Cards = ({ category }) => {
         {currentPosts.length > 0 && (
           <div className="relative rounded-xl col-span-1 row-span-4 overflow-hidden mb-4">
             <img
-              src={currentPosts[0].urlToImage}
+              src={currentPosts[0].image}
               alt="Description"
               className="w-full h-full object-cover"
             />
@@ -98,7 +98,7 @@ const Cards = ({ category }) => {
         {currentPosts.length > 1 && (
           <div className="relative rounded-xl row-span-2 col-span-2 overflow-hidden mb-4">
             <img
-              src={currentPosts[1].urlToImage}
+              src={currentPosts[1].image}
               alt="Description"
               className="w-full h-full object-cover"
             />
@@ -119,7 +119,7 @@ const Cards = ({ category }) => {
         {currentPosts.length > 2 && (
           <div className="relative rounded-xl row-span-2 overflow-hidden mb-4">
             <img
-              src={currentPosts[2].urlToImage}
+              src={currentPosts[2].image}
               alt="Description"
               className="w-full h-full object-cover"
             />
@@ -140,7 +140,7 @@ const Cards = ({ category }) => {
         {currentPosts.length > 3 && (
           <div className="relative rounded-xl row-span-2 overflow-hidden mb-4">
             <img
-              src={currentPosts[3].urlToImage}
+              src={currentPosts[3].image}
               alt="Description"
               className="w-full h-full object-cover"
             />
